@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC Campus LMS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Login Screen -->
+        <div id="login-screen" class="auth-screen">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <img src="https://api.placeholder.com/150/100" alt="Logo" class="logo">
+                    <h1>MIHA INsTiTUTE</h1>
+                </div>
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                    <p class="error-message" id="login-error"></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main App Interface -->
+        <div id="app-interface" class="hidden">
+            <!-- Top Navigation -->
+            <nav class="top-nav">
+                <div class="nav-brand">
+                    <img src="https://api.placeholder.com/40/30" alt="ABC Campus Logo" class="nav-logo">
+                    <h2>ABC Campus LMS</h2>
+                </div>
+                <div class="nav-items">
+                    <div class="notification-icon">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notification-count">0</span>
+                        <div class="notification-dropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <span class="mark-all-read">Mark all as read</span>
+                            </div>
+                            <ul class="notification-list">
+                                <!-- Notifications will be added here -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <div class="profile-pic">
+                            <img src="https://api.placeholder.com/40/40" alt="Profile Picture">
+                        </div>
+                        <span class="username">Username</span>
+                        <div class="user-dropdown">
+                            <ul>
+                                <li><a href="#" id="profile-link"><i class="fa-solid fa-user"></i> Profile</a></li>
+                                <li><a href="#" id="settings-link"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                                <li><a href="#" id="logout-link"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Side Navigation -->
+            <nav class="side-nav">
+                <ul class="nav-list">
+                    <li class="nav-item active" data-page="dashboard">
+                        <i class="fa-solid fa-gauge"></i>
+                        <span>Dashboard</span>
+                    </li>
+                    <li class="nav-item" data-page="courses">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Courses</span>
+                    </li>
+                    <li class="nav-item" data-page="assignments">
+                        <i class="fa-solid fa-tasks"></i>
+                        <span>Assignments</span>
+                    </li>
+                    <li class="nav-item" data-page="quizzes">
+                        <i class="fa-solid fa-question-circle"></i>
+                        <span>Quizzes</span>
+                    </li>
+                    <li class="nav-item" data-page="grades">
+                        <i class="fa-solid fa-chart-bar"></i>
+                        <span>Grades</span>
+                    </li>
+                    <li class="nav-item" data-page="forum">
+                        <i class="fa-solid fa-comments"></i>
+                        <span>Forum</span>
+                    </li>
+                    <li class="nav-item admin-only" data-page="manage-users">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Manage Users</span>
+                    </li>
+                    <li class="nav-item admin-only" data-page="settings">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Settings</span>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <!-- Dashboard Page -->
+                <section id="dashboard-page" class="page active">
+                    <h2>Dashboard</h2>
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-book"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3>Enrolled Courses</h3>
+                                <p class="stat-count">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-tasks"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3>Pending Assignments</h3>
+                                <p class="stat-count">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3>Average Grade</h3>
+                                <p class="stat-count">0.0</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-calendar-day"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h3>Upcoming Deadlines</h3>
+                                <p class="stat-count">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-sections">
+                        <div class="section upcoming-events">
+                            <h3>Upcoming Events</h3>
+                            <ul class="event-list">
+                                <!-- Events will be added here -->
+                            </ul>
+                        </div>
+                        <div class="section recent-activities">
+                            <h3>Recent Activities</h3>
+                            <ul class="activity-list">
+                                <!-- Activities will be added here -->
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Courses Page -->
+                <section id="courses-page" class="page">
+                    <h2>My Courses</h2>
+                    <div class="page-actions">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search courses...">
+                            <button><i class="fa-solid fa-search"></i></button>
+                        </div>
+                        <button class="btn btn-primary lecturer-only" id="create-course-btn">
+                            <i class="fa-solid fa-plus"></i> Create Course
+                        </button>
+                    </div>
+                    <div class="courses-grid">
+                        <!-- Courses will be added here -->
+                    </div>
+                </section>
+
+                <!-- Assignments Page -->
+                <section id="assignments-page" class="page">
+                    <h2>Assignments</h2>
+                    <div class="page-actions">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search assignments...">
+                            <button><i class="fa-solid fa-search"></i></button>
+                        </div>
+                        <div class="filter-dropdown">
+                            <button class="btn btn-secondary">
+                                <i class="fa-solid fa-filter"></i> Filter
+                            </button>
+                            <div class="dropdown-content">
+                                <label><input type="checkbox" checked> Pending</label>
+                                <label><input type="checkbox" checked> Submitted</label>
+                                <label><input type="checkbox" checked> Graded</label>
+                                <label><input type="checkbox" checked> Overdue</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary lecturer-only" id="create-assignment-btn">
+                            <i class="fa-solid fa-plus"></i> Create Assignment
+                        </button>
+                    </div>
+                    <div class="assignments-list">
+                        <!-- Assignments will be added here -->
+                    </div>
+                </section>
+
+                <!-- Quizzes Page -->
+                <section id="quizzes-page" class="page">
+                    <h2>Quizzes</h2>
+                    <div class="page-actions">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search quizzes...">
+                            <button><i class="fa-solid fa-search"></i></button>
+                        </div>
+                        <div class="filter-dropdown">
+                            <button class="btn btn-secondary">
+                                <i class="fa-solid fa-filter"></i> Filter
+                            </button>
+                            <div class="dropdown-content">
+                                <label><input type="checkbox" checked> Upcoming</label>
+                                <label><input type="checkbox" checked> Completed</label>
+                                <label><input type="checkbox" checked> Available</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary lecturer-only" id="create-quiz-btn">
+                            <i class="fa-solid fa-plus"></i> Create Quiz
+                        </button>
+                    </div>
+                    <div class="quizzes-list">
+                        <!-- Quizzes will be added here -->
+                    </div>
+                </section>
+
+                <!-- Grades Page -->
+                <section id="grades-page" class="page">
+                    <h2>My Grades</h2>
+                    <div class="grades-summary">
+                        <div class="overall-grade">
+                            <h3>Overall Grade</h3>
+                            <div class="grade-circle">
+                                <span class="grade-value">0.0</span>
+                            </div>
+                        </div>
+                        <div class="grade-stats">
+                            <div class="stat-item">
+                                <h4>Courses Completed</h4>
+                                <p>0</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Assignments Submitted</h4>
+                                <p>0</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Quizzes Completed</h4>
+                                <p>0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grades-table-container">
+                        <table class="grades-table">
+                            <thead>
+                                <tr>
+                                    <th>Course</th>
+                                    <th>Assignment</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th>Grade</th>
+                                    <th>Feedback</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Grade data will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Forum Page -->
+                <section id="forum-page" class="page">
+                    <h2>Discussion Forum</h2>
+                    <div class="page-actions">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search discussions...">
+                            <button><i class="fa-solid fa-search"></i></button>
+                        </div>
+                        <button class="btn btn-primary" id="create-topic-btn">
+                            <i class="fa-solid fa-plus"></i> New Topic
+                        </button>
+                    </div>
+                    <div class="forum-categories">
+                        <div class="category-item active" data-category="all">All</div>
+                        <div class="category-item" data-category="general">General</div>
+                        <div class="category-item" data-category="announcements">Announcements</div>
+                        <div class="category-item" data-category="course-specific">Course Specific</div>
+                        <div class="category-item" data-category="technical">Technical Support</div>
+                    </div>
+                    <div class="forum-topics">
+                        <!-- Forum topics will be added here -->
+                    </div>
+                </section>
+
+                <!-- Manage Users Page (Admin Only) -->
+                <section id="manage-users-page" class="page admin-only">
+                    <h2>Manage Users</h2>
+                    <div class="page-actions">
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search users...">
+                            <button><i class="fa-solid fa-search"></i></button>
+                        </div>
+                        <div class="filter-dropdown">
+                            <button class="btn btn-secondary">
+                                <i class="fa-solid fa-filter"></i> Filter
+                            </button>
+                            <div class="dropdown-content">
+                                <label><input type="checkbox" checked> Students</label>
+                                <label><input type="checkbox" checked> Lecturers</label>
+                                <label><input type="checkbox" checked> Admins</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="create-user-btn">
+                            <i class="fa-solid fa-plus"></i> Create User
+                        </button>
+                    </div>
+                    <div class="users-table-container">
+                        <table class="users-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- User data will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Settings Page -->
+                <section id="settings-page" class="page">
+                    <h2>Settings</h2>
+                    <div class="settings-container">
+                        <div class="settings-section">
+                            <h3>Profile Settings</h3>
+                       
+<form id="profile-settings-form">
+                                <div class="form-group">
+                                    <label for="profile-name">Full Name</label>
+                                    <input type="text" id="profile-name" name="profile-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-email">Email</label>
+                                    <input type="email" id="profile-email" name="profile-email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-picture">Profile Picture</label>
+                                    <input type="file" id="profile-picture" name="profile-picture">
+                                    <div class="profile-picture-preview">
+                                        <img src="https://api.placeholder.com/150/150" alt="Profile Picture">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Save Profile</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="settings-section">
+                            <h3>Account Settings</h3>
+                            <form id="account-settings-form">
+                                <div class="form-group">
+                                    <label for="current-password">Current Password</label>
+                                    <input type="password" id="current-password" name="current-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password">New Password</label>
+                                    <input type="password" id="new-password" name="new-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm-password">Confirm Password</label>
+                                    <input type="password" id="confirm-password" name="confirm-password">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="settings-section admin-only">
+                            <h3>System Settings</h3>
+                            <form id="system-settings-form">
+                                <div class="form-group">
+                                    <label for="system-name">System Name</label>
+                                    <input type="text" id="system-name" name="system-name" value="ABC Campus LMS">
+                                </div>
+                                <div class="form-group">
+                                    <label for="system-logo">System Logo</label>
+                                    <input type="file" id="system-logo" name="system-logo">
+                                    <div class="logo-preview">
+                                        <img src="https://api.placeholder.com/150/100" alt="System Logo">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="system-theme">System Theme</label>
+                                    <select id="system-theme" name="system-theme">
+                                        <option value="light">Light</option>
+                                        <option value="dark">Dark</option>
+                                        <option value="custom">Custom</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Save Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Modal Templates -->
+        <div class="modals">
+            <!-- Course Create/Edit Modal -->
+            <div id="course-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Create New Course</h3>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="course-form">
+                            <div class="form-group">
+                                <label for="course-title">Course Title</label>
+                                <input type="text" id="course-title" name="course-title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="course-code">Course Code</label>
+                                <input type="text" id="course-code" name="course-code" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="course-description">Description</label>
+                                <textarea id="course-description" name="course-description" rows="4" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="course-thumbnail">Course Thumbnail</label>
+                                <input type="file" id="course-thumbnail" name="course-thumbnail">
+                                <div class="thumbnail-preview">
+                                    <img src="https://api.placeholder.com/200/150" alt="Course Thumbnail">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="course-start-date">Start Date</label>
+                                <input type="date" id="course-start-date" name="course-start-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="course-end-date">End Date</label>
+                                <input type="date" id="course-end-date" name="course-end-date" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary close-modal">Cancel</button>
+                        <button class="btn btn-primary" id="save-course-btn">Create Course</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assignment Create/Edit Modal -->
+            <div id="assignment-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Create New Assignment</h3>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="assignment-form">
+                            <div class="form-group">
+                                <label for="assignment-title">Assignment Title</label>
+                                <input type="text" id="assignment-title" name="assignment-title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="assignment-course">Course</label>
+                                <select id="assignment-course" name="assignment-course" required>
+                                    <!-- Courses will be added here -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="assignment-description">Description</label>
+                                <textarea id="assignment-description" name="assignment-description" rows="4" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="assignment-due-date">Due Date</label>
+                                <input type="datetime-local" id="assignment-due-date" name="assignment-due-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="assignment-points">Total Points</label>
+                                <input type="number" id="assignment-points" name="assignment-points" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="assignment-file">Attachment</label>
+                                <input type="file" id="assignment-file" name="assignment-file">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary close-modal">Cancel</button>
+                        <button class="btn btn-primary" id="save-assignment-btn">Create Assignment</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Create/Edit Modal -->
+            <div id="quiz-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Create New Quiz</h3>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="quiz-form">
+                            <div class="form-group">
+                                <label for="quiz-title">Quiz Title</label>
+                                <input type="text" id="quiz-title" name="quiz-title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quiz-course">Course</label>
+                                <select id="quiz-course" name="quiz-course" required>
+                                    <!-- Courses will be added here -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quiz-description">Description</label>
+                                <textarea id="quiz-description" name="quiz-description" rows="4" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="quiz-duration">Duration (minutes)</label>
+                                <input type="number" id="quiz-duration" name="quiz-duration" min="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quiz-start-date">Available From</label>
+                                <input type="datetime-local" id="quiz-start-date" name="quiz-start-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quiz-end-date">Available Until</label>
+                                <input type="datetime-local" id="quiz-end-date" name="quiz-end-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quiz-attempts">Max Attempts</label>
+                                <input type="number" id="quiz-attempts" name="quiz-attempts" min="1" value="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="quiz-passing-score">Passing Score (%)</label>
+                                <input type="number" id="quiz-passing-score" name="quiz-passing-score" min="0" max="100" value="60" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary close-modal">Cancel</button>
+                        <button class="btn btn-primary" id="save-quiz-basic-btn">Continue to Questions</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forum Topic Create Modal -->
+            <div id="forum-topic-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Create New Topic</h3>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="forum-topic-form">
+                            <div class="form-group">
+                                <label for="topic-title">Topic Title</label>
+                                <input type="text" id="topic-title" name="topic-title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="topic-category">Category</label>
+                                <select id="topic-category" name="topic-category" required>
+                                    <option value="general">General</option>
+                                    <option value="announcements">Announcements</option>
+                                    <option value="course-specific">Course Specific</option>
+                                    <option value="technical">Technical Support</option>
+                                </select>
+                            </div>
+                            <div class="form-group course-specific-only hidden">
+                                <label for="topic-course">Course</label>
+                                <select id="topic-course" name="topic-course">
+                                    <!-- Courses will be added here -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="topic-content">Content</label>
+                                <textarea id="topic-content" name="topic-content" rows="6" required></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary close-modal">Cancel</button>
+                        <button class="btn btn-primary" id="save-topic-btn">Create Topic</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Create/Edit Modal -->
+            <div id="user-modal" class="modal admin-only">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Create New User</h3>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <form id="user-form">
+                            <div class="form-group">
+                                <label for="user-name">Full Name</label>
+                                <input type="text" id="user-name" name="user-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-email">Email</label>
+                                <input type="email" id="user-email" name="user-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-username">Username</label>
+                                <input type="text" id="user-username" name="user-username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-password">Password</label>
+                                <input type="password" id="user-password" name="user-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-role">Role</label>
+                                <select id="user-role" name="user-role" required>
+                                    <option value="student">Student</option>
+                                    <option value="lecturer">Lecturer</option>
+                                    <option value="admin">Administrator</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-status">Status</label>
+                                <select id="user-status" name="user-status" required>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary close-modal">Cancel</button>
+                        <button class="btn btn-primary" id="save-user-btn">Create User</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
